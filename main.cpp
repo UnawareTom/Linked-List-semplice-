@@ -5,7 +5,8 @@ using namespace std;
 template <typename T>
 struct Nodo {
   T data; // valore
-  Nodo* next; //puntatore al prossimo nodo  
+  Nodo<T>* next; //puntatore al prossimo nodo    	 
+  Nodo<T>* head = nullptr; //puntatore all'inizio della lista
 };
 
 //INSERIMENTO IN TESTA
@@ -51,35 +52,25 @@ void stampa_lista(T* head) {
 }
 
 int main() {  
-
-  Nodo<float>* head = nullptr; //puntatore all'inizio della lista	
+  	
+  Nodo<float>* nuovo;
 
   for(int i = 1; i < 10; i++) {
-    Nodo<float>* nuovo = new Nodo<float>{(float)i*5};     
-    ins_testa(head,nuovo);  
+    nuovo = new Nodo<float>{(float)(i*5)};     
+    ins_testa(nuovo->head,nuovo);  
   }  
 
-  stampa_lista(head);
+  stampa_lista(nuovo->head);
+
+  ////////////////////////////////////////////////////////////
+
+  Nodo<int>* nuovo1;
+
+  for(int i = 1; i < 10; i++) {
+    nuovo1 = new Nodo<int>{i*7};     
+    ins_testa(nuovo1->head,nuovo1);  
+  }  
+  stampa_lista(nuovo1->head);  
 }
 
 
-#ifndef _CELLALP_H
-#define _CELLALP_H
-template< class T >
-class Cella{
- public:
- Cella() {}
- Cella(const T& elemento){ this->elemento = elemento; }
- void setElemento(T e){ elemento = e; }
- T getElemento() const {return elemento; }
- void setSucc(Cella *p){ succ=p; }
- Cella * getSucc() const{ return succ;}
- void setPrec(Cella *p) { prec=p;}
- Cella * getPrec() const{ return prec;}
- bool operator==(Cella);
- private:
- T elemento;
- Cella * prec;
- Cella * succ;
-};
-#endif // _CELLALP_H
